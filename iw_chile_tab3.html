@@ -1555,6 +1555,7 @@
 	
 	var partiesSenate = [];
 	var parties = [];
+	var partiesnew = [];
 	
 	var moreinfo = [];
 	
@@ -1596,7 +1597,8 @@
 				d.fullName2 = getFullNameJson2(d.Datos_del_Declarante);
 				//alert(d.date + ' ' + d.fullName);
 				
-				//PARTY
+				//PARTY - OLD
+				/*
 				d.party = "";
 				d.party = _.find(parties,function (m) { return m.Diputado.toLowerCase() == d.fullName.toLowerCase() });
 				if(d.party){
@@ -1609,6 +1611,7 @@
 						d.party = "N/A";
 					}
 				}
+				*/
 				
 				d.grado = d.Datos_Entidad_Por_La_Que_Declara.Grado_Renta_Mensual;
 				
@@ -1619,8 +1622,16 @@
 				}
 				//alert(d.fullName + ' ' +d.moreinfo);
 				if(d.moreinfo){
-					d.party = d.moreinfo.Partido;
+					//d.party = d.moreinfo.Partido;
 					d.grado = d.moreinfo.Grado;
+				}
+
+				//New parties (16 April 2018)
+				d.newparty =  _.find(partiesnew,function (m) { return m.Nombre.toLowerCase() == d.fullName2.toLowerCase() });
+				if(d.newparty) {
+					d.party = d.newparty.Partido;
+				} else {
+					d.party == "";
 				}
 				
 				d.gradoNum = d.grado;
@@ -1846,6 +1857,10 @@
 		});
 		d3.csv("data/iw-chile-party-senate.csv", function (rows) {
 			partiesSenate = rows;
+			//renderLoaded();
+		});
+		d3.csv("data/parties-2018.csv", function (rows) {
+			partiesnew = rows;
 			//renderLoaded();
 		});
 		d3.csv("data/partidos-grados.csv", function (rows) {
