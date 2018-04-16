@@ -213,6 +213,10 @@
 
 <body>
 
+<div id="loader-container">
+	<div id="loader"></div>
+</div>
+
 <script>
 	//Additional date sorting for datatables
 	var dmy = d3.time.format("%d/%m/%Y");
@@ -1564,6 +1568,7 @@
 	$(function() {
 		var renderLoaded  = _.after(2,  function () { 
 			//var dateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
+			$('#loader-container').hide();
 			var dateFormat = d3.time.format("%d/%m/%Y");
 			var dateFormatJson = d3.time.format("%Y/%m/%d");
 			var now = Date.now();

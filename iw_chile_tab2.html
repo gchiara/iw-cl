@@ -165,6 +165,10 @@
 
 <body>
 
+<div id="loader-container">
+	<div id="loader"></div>
+</div>
+
 <script>
 	//Additional date sorting for datatables
 	var dmy = d3.time.format("%d/%m/%Y");
@@ -1037,7 +1041,7 @@
 	$(function() {
 		//var renderLoaded  = _.after(2,  function () {
 		var renderLoaded  = function () {
-			var dateFormat = d3.time.format("%d/%m/%Y");
+			var dateFormat = d3.time.format("%m/%d/%Y");
 			var now = Date.now();
 			var a;
 			
@@ -1103,6 +1107,7 @@
 				partiesSenate = rows;
 				d3.csv("data/cl-tab2.csv", function(rows) {
 					events = rows;
+					$('#loader-container').hide();
 					renderLoaded();
 				}); 
 			}); 
