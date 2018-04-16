@@ -1384,6 +1384,11 @@ td.number{
 	padding: 0 5px;
 }
 
+#yearselect {
+	width: 100%;
+	padding: 10px;
+}
+
 
 
 /* LOADER */
